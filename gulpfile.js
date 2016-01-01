@@ -6,43 +6,72 @@ var babel = require("gulp-babel");
 var exec = require("gulp-exec");
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
+var runSequence = require('run-sequence');
 
-var dists = "bin/";
+var config = {
+    ts : {
+        src: [
+          './src/**/*.ts',
+        ],
+        test: [
+          './test/**/*.ts'
+        ],
+        dst: './build',
+        options: { target: 'ES5', module: 'commonjs' }
+    }
+};
 
-var typescriptProject = typescript.createProject({
-    typescript: require("typescript"),
-    target: "ES6",
-    sortOutput: true
-});
+var typescriptProject = typescript.createProject(config.ts.options);
+
 
 gulp.task("compile", function(){
     // 対象となるファイルをすべて指定
-    gulp.src(['./src/*.ts'])
-	.pipe(typescript(typescriptProject))
-	.pipe(rename(function(p){
-	    //p.dirname = p.dirname.replace('src', '');
-	    p.dirname = "";
-	    p;
-	}))
-	.pipe(babel())
-	.pipe(gulp.dest(dists));
+  gulp.src(config.ts.src)
+    .pipe(typescript(typescriptProject))
+    .js
+//  .pipe(babel())
+  	.pipe(gulp.dest(config.ts.dst));
 });
 
-gulp.task("test:compile", function(){
-	gulp.src(['./src/*.ts', './test/*.ts'])
-	.pipe(typescript(typescriptProject))
-	.pipe(gulp.dest(""));
+gulp.task("test:compile-source", function(){
+  return gulp.src(config.ts.src)
+    .pipe(typescript(config.ts.options))
+    .js
+//  .pipe(babel())
+    .pipe(gulp.dest("./test/temp/src"));
+});
+
+gulp.task("test:compile-test", function(){
+  return gulp.src(config.ts.test)
+  .pipe(typescript(config.ts.options))
+  .pipe(babel())
+  .pipe(gulp.dest("./test/temp/test"));
+});
+
+gulp.task("test-compile", function(callback){
+  return runSequence(
+    "test:compile-source",
+    "test:compile-test",
+    callback
+  );
 });
 
 gulp.task('mocha', function() {
-  return gulp.src(['test/*.js'], { read: false })
+  return gulp.src(['./test/temp/test/*.js'], { read: false })
     .pipe(mocha({ reporter: 'list'}))
     .on('error', gutil.log);
 });
 
 
 gulp.task('watch-mocha', function() {
-    gulp.watch(['src/**.ts', 'test/**.ts'], ['test']);
+    gulp.watch(['src/**/*.ts', 'test/**/*.ts'], ['test']);
 });
 
-gulp.task('test', ["test:compile", "mocha"]);
+gulp.task('test', function(callback) {
+  runSequence(
+    "test:compile-source",
+    "test:compile-test",
+    "mocha",
+    callback
+  );
+});
