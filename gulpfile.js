@@ -4,7 +4,8 @@ var replace = require("gulp-replace");
 var rename = require("gulp-rename");
 var babel = require("gulp-babel");
 var exec = require("gulp-exec");
-var karma = require('gulp-karma');
+var mocha = require('gulp-mocha');
+var gutil = require('gulp-util');
 
 var dists = "bin/";
 
@@ -13,11 +14,6 @@ var typescriptProject = typescript.createProject({
     target: "ES6",
     sortOutput: true
 });
-
-var testFiles = [
-    'src/*.ts',
-    'spec/*.ts'
-];
 
 gulp.task("compile", function(){
     // 対象となるファイルをすべて指定
@@ -32,11 +28,21 @@ gulp.task("compile", function(){
 	.pipe(gulp.dest(dists));
 });
 
-gulp.task('karma', function(){
-    gulp.src(testFiles)
-	.pipe(karma({
-	    configFile: 'karma.conf.js',
-	    action: 'watch'
-	}));
+gulp.task("test:compile", function(){
+	gulp.src(['./src/*.ts', './test/*.ts'])
+	.pipe(typescript(typescriptProject))
+	.pipe(gulp.dest(""));
 });
 
+gulp.task('mocha', function() {
+  return gulp.src(['test/*.js'], { read: false })
+    .pipe(mocha({ reporter: 'list'}))
+    .on('error', gutil.log);
+});
+
+
+gulp.task('watch-mocha', function() {
+    gulp.watch(['src/**.ts', 'test/**.ts'], ['test']);
+});
+
+gulp.task('test', ["test:compile", "mocha"]);
