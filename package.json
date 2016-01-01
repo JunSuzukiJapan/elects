@@ -1,0 +1,30 @@
+{
+  "name": "elects",
+  "version": "1.0.0",
+  "description": "",
+  "bin" : "bin/app.js",
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JunSuzukiJapan/elects.git"
+  },
+  "keywords": [],
+  "author": "Jun Suzuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JunSuzukiJapan/elects/issues"
+  },
+  "homepage": "https://github.com/JunSuzukiJapan/elects#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-karma": "0.0.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.16",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-typescript-preprocessor": "0.0.21",
+    "typescript": "^1.7.5"
+  }
+}
