@@ -21,7 +21,7 @@
     "gulp": "^3.9.0",
     "gulp-karma": "0.0.5",
     "jasmine-core": "^2.4.1",
-    "karma": "^0.13.16",
+    "karma": ">=0.10 <=0.13",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.6",
     "karma-typescript-preprocessor": "0.0.21",
