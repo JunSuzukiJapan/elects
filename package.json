@@ -1,0 +1,32 @@
+{
+  "name": "elects",
+  "version": "1.0.0",
+  "description": "",
+  "bin": "bin/app.js",
+  "scripts": {
+    "test": "node_modules/gulp/bin/gulp.js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JunSuzukiJapan/elects.git"
+  },
+  "keywords": [],
+  "author": "Jun Suzuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JunSuzukiJapan/elects/issues"
+  },
+  "homepage": "https://github.com/JunSuzukiJapan/elects#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-exec": "^2.1.2",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-typescript": "^2.10.0",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.3.4",
+    "typescript": "^1.7.5"
+  }
+}
