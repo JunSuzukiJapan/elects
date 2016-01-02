@@ -1,4 +1,4 @@
-/// <reference path="typings/github-electron/github-electron.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 interface CertificateObject {
 	data: Buffer,
@@ -20,6 +20,7 @@ interface AuthInfoObject {
 }
 
 class BaseApplication {
+    crashReporter: GitHubElectron.CrashReporter;
     mainWindow: BaseBrowserWindow = null;
 
     windowOptions: GitHubElectron.BrowserWindowOptions = {
@@ -30,18 +31,23 @@ class BaseApplication {
         acceptFirstMouse: true,
         titleBarStyle: 'hidden'
     };
-    startUrl: string = 'file://' + __dirname + '/index.html';
+    startUrl: string = 'file://' + __dirname + '/html/index.html';
 
     constructor(private app: GitHubElectron.App,
     		    windowOptions?: GitHubElectron.BrowserWindowOptions,
     		    url?: string)
     {
+        this.crashReporter = electron.crashReporter;
+        this.crashReporter.start();
+
     	if(windowOptions !== undefined){
     		this.windowOptions = windowOptions;
     	}
     	if(url !== undefined){
     		this.startUrl = url;
     	}
+
+        console.log('start url: ', this.startUrl);
 
     	this.app.on('will-finish-launching', () => { this.onWillFinishLaunching(); });
         this.app.on('ready', () => { this.onReady(); });

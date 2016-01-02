@@ -4,11 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/gulp/bin/gulp.js test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp-electron": "0.0.10"
+    "electron-prebuilt": "^0.36.2",
+    "fs-extra": "^0.26.3",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-electron": "0.0.10",
+    "gulp-exec": "^2.1.2",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-typescript": "^2.10.0",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.3.4",
+    "run-sequence": "^1.1.5",
+    "tsd": "^0.6.5"
   }
 }

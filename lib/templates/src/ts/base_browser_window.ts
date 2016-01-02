@@ -1,4 +1,4 @@
-/// <reference path="typings/github-electron/github-electron.d.ts" />
+/// <reference path="../../typings/tsd.d.ts" />
 
 const electron = require('electron');
 const BrowserWindow: typeof GitHubElectron.BrowserWindow = electron.BrowserWindow;
