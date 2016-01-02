@@ -1,7 +1,8 @@
 {
   "name": "elects",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Electron with TypeScript framework generator",
   "bin": "bin/app.js",
   "scripts": {
     "test": "node_modules/gulp/bin/gulp.js test"
@@ -10,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/JunSuzukiJapan/elects.git"
   },
-  "keywords": [],
+  "keywords": ["Electron", "TypeScript"],
   "author": "Jun Suzuki",
   "license": "MIT",
   "bugs": {

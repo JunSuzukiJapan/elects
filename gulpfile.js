@@ -18,8 +18,8 @@ var config = {
         test: [
           './test/**/*.ts'
         ],
-        dst: './build',
-        main: './build/app.js',
+        dst: './bin',
+        main: './bin/app.js',
         templates: './lib',
         options: { target: 'ES5', module: 'commonjs' }
     }
