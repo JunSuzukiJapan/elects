@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JunSuzukiJapan/elects#readme",
   "devDependencies": {
+    "fs-extra": "^0.26.3",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-exec": "^2.1.2",
@@ -29,5 +30,10 @@
     "mocha": "^2.3.4",
     "run-sequence": "^1.1.5",
     "typescript": "^1.7.5"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "fs-extra": "^0.26.3"
   }
 }

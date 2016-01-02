@@ -7,6 +7,8 @@ var exec = require("gulp-exec");
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 var runSequence = require('run-sequence');
+var fs = require('fs-extra');
+
 
 var config = {
     ts : {
@@ -17,6 +19,8 @@ var config = {
           './test/**/*.ts'
         ],
         dst: './build',
+        main: './build/app.js',
+        templates: './lib',
         options: { target: 'ES5', module: 'commonjs' }
     }
 };
@@ -26,18 +30,18 @@ var typescriptProject = typescript.createProject(config.ts.options);
 
 gulp.task("compile", function(){
     // 対象となるファイルをすべて指定
-  gulp.src(config.ts.src)
+  return gulp.src(config.ts.src)
     .pipe(typescript(typescriptProject))
     .js
-//  .pipe(babel())
-  	.pipe(gulp.dest(config.ts.dst));
+    .pipe(babel())
+    .pipe(gulp.dest(config.ts.dst));
 });
 
 gulp.task("test:compile-source", function(){
   return gulp.src(config.ts.src)
     .pipe(typescript(config.ts.options))
     .js
-//  .pipe(babel())
+    .pipe(babel())
     .pipe(gulp.dest("./test/temp/src"));
 });
 
@@ -75,3 +79,30 @@ gulp.task('test', function(callback) {
     callback
   );
 });
+
+gulp.task('copy-templates', function(){
+  fs.copySync(config.ts.templates, config.ts.dst);
+  return true;
+});
+
+gulp.task('run-app', function(){
+  var exec = require('child_process').exec;
+  exec('node ' + config.ts.main, function(err, stdout, stderr){
+    if(err){
+      throw err;
+    }
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+  });
+});
+
+gulp.task('run', function(callback){
+  runSequence(
+      'compile',
+      'copy-templates',
+      'run-app',
+      callback
+  );
+});
+
+gulp.task('default', ['compile']);
