@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-var React = require('react');
+var React = require('../node_modules/react/dist/react.min.js');
 
 var HelloMessage = React.createClass({
     render: function() {
