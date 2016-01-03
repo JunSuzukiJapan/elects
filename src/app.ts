@@ -20,8 +20,7 @@ program
     .command('new <name>', 'create new project')
     .action( (name) => {
         console.log("Creating new project '" + name + "'.");
-        const Generator = require('./project_generator').ProjectGenerator;
-        //console.log("Generator: ", Generator);
+        const Generator = require('./project_generator').default;
         const gen = new Generator(name);
         gen.make();
         console.log('done.');

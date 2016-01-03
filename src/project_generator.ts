@@ -2,7 +2,7 @@
 
 const fs = require('fs-extra');
 
-export class ProjectGenerator {
+export default class ProjectGenerator {
     srcPath: string = "templates/";
 
     constructor(private project_name: string){
