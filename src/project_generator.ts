@@ -24,6 +24,9 @@ export default class ProjectGenerator {
             "main": "app.js",
             "author": "",
             "license": "",
+            "dependencies": {
+                "react": "^0.14.5"
+            },
             "bugs": {
                 "url": "https://github.com/Sample/sample/issues"
             }
