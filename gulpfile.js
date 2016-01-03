@@ -85,6 +85,8 @@ gulp.task('copy-templates', function(){
   return true;
 });
 
+gulp.task('build', ['compile', 'copy-templates']);
+
 gulp.task('run-app', function(){
   var exec = require('child_process').exec;
   exec('node ' + config.ts.main, function(err, stdout, stderr){
@@ -105,4 +107,4 @@ gulp.task('run', function(callback){
   );
 });
 
-gulp.task('default', ['compile']);
+gulp.task('default', ['build']);

@@ -1,4 +1,4 @@
-/// <reference path="typings/github-electron/github-electron.d.ts" />
+/// <reference path="../typings/github-electron/github-electron.d.ts" />
 /// <reference path="ts/base_browser_window.ts" />
 /// <reference path="ts/base_application.ts" />
 
