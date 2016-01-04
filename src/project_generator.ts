@@ -31,11 +31,9 @@ export default class ProjectGenerator {
                 "url": "https://github.com/Sample/sample/issues"
             }
         };
-        const buildPath = this.project_name + '/build';
-        const jsonFilename = buildPath + '/package.json';
-        fs.emptyDir(buildPath, function(){
-            fs.writeFile(jsonFilename, JSON.stringify(json, null, '    '));
-        });
+        const srcPath = this.project_name + '/src';
+        const jsonFilename = srcPath + '/package.json';
+        fs.writeFile(jsonFilename, JSON.stringify(json, null, '    '));
     }
 
 
