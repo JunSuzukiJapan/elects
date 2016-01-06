@@ -22,7 +22,7 @@ Grid(style="height:100%; width:100%")
 
         Col(md=3 className="sidebar-nav")
             p(className="sidebar-title")
-                a(href="") ElecTS Document
+                a(onClick=onClickGotoTop) ElecTS Document
             ul(className="nav")
                 for obj, index in list
                     - var filename = path.resolve(__dirname + '/md/' + obj.filename);

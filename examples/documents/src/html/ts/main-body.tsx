@@ -38,6 +38,10 @@ export class MainBody extends React.Component {
         this.setState({maximize: true, selectedFilename: filename});
     }
 
+    onClickGotoTop(e){
+        this.setState({maximize: false});
+    }
+
     render(){
         return this.template({
             list: this.markdown_list,
@@ -45,7 +49,8 @@ export class MainBody extends React.Component {
             filename: this.state.selectedFilename,
             onMaximize: this.maximizeContent.bind(this),
             onMinimize: this.minimizeContent.bind(this),
-            onClickIndex: this.onClickIndex.bind(this)
+            onClickIndex: this.onClickIndex.bind(this),
+            onClickGotoTop: this.onClickGotoTop.bind(this)
         });
     }
 }
