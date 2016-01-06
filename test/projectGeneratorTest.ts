@@ -20,7 +20,6 @@ const filelist = [
     'gulpfile.js',
     'tsd.json',
     'tsconfig.json',
-    'test/',
     'src/app.ts',
     'src/package.json',
     'src/ts/base_application.ts',
