@@ -27,6 +27,10 @@ var config = {
 
 var typescriptProject = typescript.createProject(config.ts.options);
 
+gulp.task('clean', function(callback){
+  fs.removeSync(config.ts.dst);
+  callback();
+});
 
 gulp.task("compile", function(){
     // 対象となるファイルをすべて指定

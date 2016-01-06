@@ -2,9 +2,11 @@
 /// <reference path="../typings/node/node.d.ts" />
 
 import fs = require('fs-extra');
-import chai = require("chai");
+import chai = require('chai');
+import child_process = require('child_process');
 import Generator from '../src/project_generator';
 
+const execSync = child_process.execSync;
 chai.should();
 
 const test_project_name = 'mocha_test_project';
@@ -26,6 +28,8 @@ const filelist = [
     'src/html/index.html',
     'src/html/ts/main.tsx'
 ];
+
+execSync('gulp');
 
 before((done) => {
     subject.make();
