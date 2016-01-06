@@ -1,0 +1,74 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 20px;
+    background: #eceee6;
+}
+
+div#container {
+    height: 100%;
+}
+
+.sidebar-nav {
+    background: #263C3A;
+    border: 1px solid #979797;
+    height: 100%;
+    float: right;
+}
+
+.sidebar-title {
+    font-family: HiraKakuProN-W3;
+    font-size: 24px;
+    color: #E78585;
+    line-height: 50px;
+    text-shadow: 0px 2px 4px rgba(26,26,26,0.50);
+}
+
+.nav {
+    font-family: AvenirNext-Bold;
+    font-size: 24px;
+    color: #F8F8F8;
+    line-height: 40px;
+}
+
+/* Markdown max frame */
+.maxframe {
+    background: #F8F8F8;
+    border-radius: 2px;
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+}
+
+/* Markdown mini frame */
+.miniframe {
+    background: #F8F8F8;
+    border: 1px solid #979797;
+    border-radius: 8px;
+    width: 90%;
+    height: 90%;
+    margin-top: 5%;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.miniframe-row {
+    height: 300px;
+}
+
+/* Title: */
+h1 {
+    font-family: AvenirNext-Bold;
+    font-size: 30px;
+    color: #4A4A4A;
+    line-height: 41px;
+}
+/* Content: */
+p {
+    font-family: HiraKakuProN-W3;
+    font-size: 20px;
+    color: #4A4A4A;
+    line-height: 24px;
+}
