@@ -45,7 +45,7 @@ after((done) => {
 describe('Generator', () => {
     filelist.forEach((filename) => {
         describe(filename, () => {
-            it('is exists.', () => {
+            it('is generated.', () => {
                 const path = basePath + '/' + test_project_name + '/' + filename;
                 fs.existsSync(path).should.equal(true);
             });
