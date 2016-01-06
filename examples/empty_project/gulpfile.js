@@ -13,7 +13,7 @@ var electron = require('gulp-electron');
 var exec = require('child_process').exec;
 var jade = require('@mizchi/gulp-react-jade');
 
-var packageJson = require('./src/package.json');
+var packageJson = require('./build/package.json');
 
 var config = {
     ts : {
@@ -85,7 +85,7 @@ gulp.task('compile-html-ts', function(){
       }else{
         dirname = dirname.replace(/\/ts$/, '/js');
       }
-      //console.log(dirname);
+      console.log(dirname);
       path.dirname = dirname;
     }))
     .pipe(gulp.dest(config.ts.dst_html));
@@ -151,9 +151,6 @@ gulp.task('copy-html', function(){
 });
 
 gulp.task('copy-package.json', function(){
-  if( ! fs.existsSync(config.ts.dst) ){
-    fs.emptyDirSync(config.ts.dst);
-  }
   return gulp.src('src/package.json')
     .pipe(gulp.dest(config.ts.dst));
 });
@@ -169,11 +166,6 @@ gulp.task('npm-install', ['copy-package.json'], function(callback){
   process.chdir(current_directory);
 });
 
-gulp.task('copy-markdown', function(){
-  return gulp.src('./src/markdown/*')
-    .pipe(gulp.dest(config.ts.dst_html + '/md'));
-});
-
 gulp.task('run-app', function(callback){
   var cmd = config.ts.electron + ' ' + config.ts.dst;
   console.log('cmd: ', cmd);
@@ -186,11 +178,10 @@ gulp.task('run-app', function(callback){
 
 gulp.task('run', function(callback){
   runSequence(
-      'npm-install',
       'compile',
       'compile-jade',
       'copy-html',
-      'copy-markdown',
+      'npm-install',
       'run-app',
       callback
   );

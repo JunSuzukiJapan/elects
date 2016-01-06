@@ -12,6 +12,13 @@ if(arg1.match( '/node$' )){
     process.argv.shift();
 }
 
+// 実行されたディレクトリからテンプレートのパスを求める。 
+const arg = process.argv[0];
+const match = arg.match('.*/(.*)$');
+const path = arg.replace(match[1], '');
+const templatePath = path + 'templates/';
+const basePath = process.cwd();
+
 program
     .version('0.0.1')
 //    .option('-h, --help', 'show help')
@@ -21,7 +28,7 @@ program
     .action( (name) => {
         console.log("Creating new project '" + name + "'.");
         const Generator = require('./project_generator').default;
-        const gen = new Generator(name);
+        const gen = new Generator(name, templatePath, basePath);
         gen.make();
         console.log('done.');
     });

@@ -60,6 +60,11 @@ gulp.task("test-compile", function(callback){
   );
 });
 
+gulp.task('test:clean', function(callback){
+  fs.removeSync('./test/temp/');
+  callback();
+});
+
 gulp.task('mocha', function() {
   return gulp.src(['./test/temp/test/*.js'], { read: false })
     .pipe(mocha({ reporter: 'list'}))
@@ -76,6 +81,7 @@ gulp.task('test', function(callback) {
     "test:compile-source",
     "test:compile-test",
     "mocha",
+    "test:clean",
     callback
   );
 });

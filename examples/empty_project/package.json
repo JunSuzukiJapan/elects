@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@mizchi/gulp-react-jade": "^1.0.5",
     "electron-prebuilt": "^0.36.2",
     "fs-extra": "^0.26.3",
     "gulp": "^3.9.0",
@@ -23,8 +22,6 @@
     "gulp-typescript": "^2.10.0",
     "gulp-util": "^3.0.7",
     "mocha": "^2.3.4",
-    "react": "^0.14.5",
-    "react-jade": "^2.5.0",
     "run-sequence": "^1.1.5",
     "tsd": "^0.6.5"
   }

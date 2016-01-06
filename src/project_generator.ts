@@ -3,19 +3,14 @@
 const fs = require('fs-extra');
 
 export default class ProjectGenerator {
-    srcPath: string = "templates/";
+//    srcPath: string = "templates/";
 
-    constructor(private project_name: string){
+    constructor(private project_name: string, private templatePath: string, private basePath: string){
     }
 
     make(){
-        // 実行されたディレクトリからテンプレートのパスを求める。 
-        const arg = process.argv[0];
-        const match = arg.match('.*/(.*)$');
-        const path = arg.replace(match[1], '');
-        const src = path + this.srcPath;
         // テンプレートをコピー
-        fs.copySync(src, this.project_name);
+        fs.copySync(this.templatePath, this.project_name);
         // package.jsonを作成
         const json = {
             "name": this.project_name,
@@ -31,7 +26,7 @@ export default class ProjectGenerator {
                 "url": "https://github.com/Sample/sample/issues"
             }
         };
-        const srcPath = this.project_name + '/src';
+        const srcPath = this.basePath + '/' + this.project_name + '/src';
         const jsonFilename = srcPath + '/package.json';
         fs.writeFile(jsonFilename, JSON.stringify(json, null, '    '));
     }
