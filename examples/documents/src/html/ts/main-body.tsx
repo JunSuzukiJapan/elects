@@ -5,7 +5,6 @@ import React = require('react');
 import fs = require('fs-extra');
 import path = require('path');
 
-
 export class MainBody extends React.Component {
     private template_filename: string = path.resolve(__dirname + '/../body-template');
     private template = null;
@@ -25,7 +24,6 @@ export class MainBody extends React.Component {
     }
 
     maximizeContent(maximize:boolean, selectedFilename: string){
-        //console.log('maximize: ', maximize, ', filename: ', selectedFilename);
         this.setState({maximize: maximize, selectedFilename: selectedFilename});
     }
 
