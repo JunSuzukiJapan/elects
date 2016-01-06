@@ -38,13 +38,6 @@ export class MainBody extends React.Component {
         this.setState({maximize: true, selectedFilename: filename});
     }
 
-/*
-    shouldComponentUpdate(nextProps, nextState){
-        console.log('shouldComponentUpdate');
-        return true;
-    }
-*/
-
     render(){
         return this.template({
             list: this.markdown_list,

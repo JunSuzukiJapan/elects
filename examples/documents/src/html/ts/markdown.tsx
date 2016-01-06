@@ -31,12 +31,6 @@ export class Markdown extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-      console.log('shouldComponentUpdate');
-      console.log('nextProps.filename ', nextProps.path_name);
-      return true;
-  }
-
   render(){
     const text = fs.readFileSync(this.props.path_name, 'utf8');
     const html = marked(text);
