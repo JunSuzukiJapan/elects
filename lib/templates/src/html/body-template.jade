@@ -1,0 +1,32 @@
+- var ReactBootstrap = require('react-bootstrap');
+- var Grid = ReactBootstrap.Grid;
+- var Row = ReactBootstrap.Row
+- var Col = ReactBootstrap.Col;
+- var path = require('path');
+- var Markdown = require('./js/markdown').Markdown;
+
+Grid(style="height:100%; width:100%")
+    Row(style="height:100%")
+        if maximize
+            Col(md=9 id="big-markdown" className="maxframe" style="top: 0; left: 0; position:absolute; height: 100%;")
+                Markdown(path_name=filename css="maxframe" onChange=onMinimize)
+
+        else
+            Col(md=9 className="miniframe-row" z-index=2 style="top: 0; left: 0; position:absolute; height: 100%;")
+                for obj, index in list
+                    - var filename = path.resolve(__dirname + '/md/' + obj.filename);
+                    Col(md=4 key=index className="miniframe-row")
+                        Markdown(key=index path_name=filename css="miniframe" onChange=onMaximize)
+
+        Col(md=3 className="sidebar-nav")
+            div(className="sidebar-contents")
+                p(className="sidebar-title")
+                    a(onClick=onClickGotoTop) ElecTS Document
+                ul(className="nav")
+                    for obj, index in list
+                        - var filename = path.resolve(__dirname + '/md/' + obj.filename);
+                        li(key=index)
+                            a(name=filename onClick=onClickIndex)
+                              = obj.title
+
+

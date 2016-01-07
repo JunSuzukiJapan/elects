@@ -50,7 +50,8 @@ class BaseApplication {
         console.log('start url: ', this.startUrl);
 
     	this.app.on('will-finish-launching', () => { this.onWillFinishLaunching(); });
-        this.app.on('ready', () => { this.onReady(); });
+//        this.app.on('ready', () => { this.onReady(); });
+        this.app.on('ready', this.onReady.bind(this));
         this.app.on('window-all-closed', () => { this.onWindowAllClosed(); });
     	this.app.on('before-quit', (event: string) => { this.onBeforeQuit(event); });
     	this.app.on('will-quit', (event: string) => { this.onWillQuit(event);});

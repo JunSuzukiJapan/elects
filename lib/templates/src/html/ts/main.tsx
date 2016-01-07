@@ -1,14 +1,11 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-var React = require('../node_modules/react/dist/react.min.js');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const path = require('path');
 
-var HelloMessage = React.createClass({
-    render: function() {
-        return <div>Hello {this.props.name}</div>;
-    }
-});
+const MainBody: typeof React.Component = require('./js/main-body').MainBody;
+const element = React.createElement(MainBody);
+const container = document.getElementById('container');
 
-React.render(
-    <HelloMessage name="ElecTS" />,
-    document.getElementById('container')
-);
+ReactDOM.render(element, container);
