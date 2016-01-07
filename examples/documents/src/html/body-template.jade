@@ -19,13 +19,14 @@ Grid(style="height:100%; width:100%")
                         Markdown(key=index path_name=filename css="miniframe" onChange=onMaximize)
 
         Col(md=3 className="sidebar-nav")
-            p(className="sidebar-title")
-                a(onClick=onClickGotoTop) ElecTS Document
-            ul(className="nav")
-                for obj, index in list
-                    - var filename = path.resolve(__dirname + '/md/' + obj.filename);
-                    li(key=index)
-                        a(name=filename onClick=onClickIndex)
-                          = obj.title
+            div(className="sidebar-contents")
+                p(className="sidebar-title")
+                    a(onClick=onClickGotoTop) ElecTS Document
+                ul(className="nav")
+                    for obj, index in list
+                        - var filename = path.resolve(__dirname + '/md/' + obj.filename);
+                        li(key=index)
+                            a(name=filename onClick=onClickIndex)
+                              = obj.title
 
 

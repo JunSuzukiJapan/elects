@@ -1,10 +1,34 @@
 [
     {
-        "title": "Index",
+        "title": "Welcome",
         "filename": "index.md"
+    },
+    {
+        "title": "Quick Start",
+        "filename": "quickstart.md"
+    },
+    {
+        "title": "Debug",
+        "filename": "how-to-debug.md"
+    },
+    {
+        "title": "React",
+        "filename": "react.md"
+    },
+    {
+        "title": "React-jade",
+        "filename": "react-jade.md"
     },
     {
         "title": "React Bootstrap",
         "filename": "bootstrap.md"
+    },
+    {
+        "title": "class BaseApplication",
+        "filename": "base-application.md"
+    },
+    {
+        "title": "class BaseBrowserWindow",
+        "filename": "base-browser-window.md"
     }
 ]

@@ -1,4 +1,4 @@
-## Navbar
+## React Bootstrap
 
 ```jade:
 - var ReactBootstrap = require('react-bootstrap');

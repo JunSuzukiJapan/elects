@@ -2,12 +2,13 @@
 
 //import React = require('../../node_modules/react/dist/react.min.js');
 import React = require('../../node_modules/react/');
-import marked = require('../../node_modules/marked/');
+import MarkdownIt = require('../../node_modules/markdown-it/');
 import fs = require('../../node_modules/fs-extra/');
 import path = require('path');
 
 export class Markdown extends React.Component {
   private template_filename: string = path.resolve(__dirname + '/../markdown-template');
+  private md = new MarkdownIt();
 
   private template = null;
   private onChange;
@@ -33,7 +34,8 @@ export class Markdown extends React.Component {
 
   render(){
     const text = fs.readFileSync(this.props.path_name, 'utf8');
-    const html = marked(text);
+    const html = this.md.render(text);
+
     return this.template({
       html: html,
       style: this.props.css,
