@@ -1,6 +1,6 @@
 # class BaseApplication Reference
 
-## 定義されているInterface
+# 定義されているInterface
 
 interface CertificateObject {
     data: Buffer,
@@ -22,57 +22,57 @@ interface AuthInfoObject {
 }
 
 
-## ハンドラー関数
+# ハンドラー関数
 
-### onWindowAllClosed
+## onWindowAllClosed
 
 onWindowAllClosed()
 
-### onReady
+## onReady
 
 onReady()
 
-### onWillFinishLaunching
+## onWillFinishLaunching
 
 onWillFinishLaunching()
 
-### onBeforeQuit
+## onBeforeQuit
 
 onBeforeQuit(event: string)
 
-### onWillQuit
+## onWillQuit
 
 onWillQuit(event: string)
 
-### onQuit
+## onQuit
 
 onQuit(event: string, exitCode: number)
 
-### onOpenFile (OS X only)
+## onOpenFile (OS X only)
 
 onOpenFile(event: string, path: string)
 
-### onOpenURL (OS X only)
+## onOpenURL (OS X only)
 
 onOpenURL(event: string, url: string)
 
-### onActivate (OS X only)
+## onActivate (OS X only)
 
 onActivate(event: string, hasVisibleWindows: boolean)
 
-### onBrowserWindowBlur
+## onBrowserWindowBlur
 
 onBrowserWindowBlur(event: string, window: GitHubElectron.BrowserWindow)
 
-### onBrowserWindowFocus
+## onBrowserWindowFocus
 
 onBrowserWindowFocus(event: string, window: GitHubElectron.BrowserWindow)
 
-### onBrowserWindowCreated
+## onBrowserWindowCreated
 
 onBrowserWindowCreated(event: string, window: GitHubElectron.BrowserWindow)
 
-### onCertificateError
+## onCertificateError
 
  onCertificateError(event: string,
                     webContents: GitHubElectron.WebContents,
@@ -81,7 +81,7 @@ onBrowserWindowCreated(event: string, window: GitHubElectron.BrowserWindow)
                     certificate: CertificateObject,
                     callback: (verifyCertificate: boolean) => void)
 
-### onSelectClientCertificate
+## onSelectClientCertificate
 
  onSelectClientCertificate(event: string,
                            webContents: GitHubElectron.WebContents,
@@ -89,7 +89,7 @@ onBrowserWindowCreated(event: string, window: GitHubElectron.BrowserWindow)
                            certificateList: CertificateObject[],
                            callback: (certificate: CertificateObject) => void)
 
-### onLogin
+## onLogin
 
  onLogin(event: string,
          webContents: GitHubElectron.WebContents,
@@ -97,6 +97,6 @@ onBrowserWindowCreated(event: string, window: GitHubElectron.BrowserWindow)
          authInfo: AuthInfoObject,
          callback: (username: string, secret: string) => void)
 
-###  onGpuProcessCrashed
+##  onGpuProcessCrashed
 
   onGpuProcessCrashed()

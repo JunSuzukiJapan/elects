@@ -13,7 +13,9 @@ div#container {
 
 .sidebar-nav {
     height: 100%;
-    float: right;
+    top: 0px;
+    right: -2px;
+    position: absolute;
 }
 
 .sidebar-contents {

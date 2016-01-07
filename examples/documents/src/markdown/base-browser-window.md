@@ -1,82 +1,80 @@
 # class BaseBrowserWindow Reference
 
 
-## ハンドラー関数
+# ハンドラー関数
 
-### onClosed()
+## onClosed()
 
 onClosed()
 
-### onClose
+## onClose
 
 onClose(event: Event)
 
-
-### onPageTitleUpdated
+## onPageTitleUpdated
 
 onPageTitleUpdated(event: Event)
 
-### onUnresponsive
+## onUnresponsive
 
 onUnresponsive()
 
-### onResponsive
+## onResponsive
 
 onResponsive()
 
-### onBlur
+## onBlur
 
 onBlur()
 
-### onFocus
+## onFocus
 
 onFocus()
 
-### onMaximize
+## onMaximize
 
 onMaximize()
 
-### onUnmaximize
+## onUnmaximize
 
 onUnmaximize()
 
-### onMinimize
+## onMinimize
 
 onMinimize()
 
-### onRestore
+## onRestore
 
 onRestore()
 
-### onResize
+## onResize
 
 onResize()
 
-### onMove
+## onMove
 
 onMove()
 
-### onMoved (OS X only)
+## onMoved (OS X only)
 
 onMoved()
 
-### onEnterFullScreen
+## onEnterFullScreen
 
 onEnterFullScreen()
 
-### onLeaveFullScreen
+## onLeaveFullScreen
 
 onLeaveFullScreen()
 
-### onEnterHtmlFullScreen
+## onEnterHtmlFullScreen
 
 onEnterHtmlFullScreen()
 
-### onLeaveHtmlFullScreen
+## onLeaveHtmlFullScreen
 
 onLeaveHtmlFullScreen()
 
-### onAppCommand
+## onAppCommand
 
 onAppCommand(event: Event, cmd: string)
-
