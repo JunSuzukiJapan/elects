@@ -5,12 +5,14 @@
 以下の記事は、```src/html/ts```フォルダ内の.ts(.tsx)ファイルでReactを扱う話です。
 
 >Electronアプリを作る時、絶対にReactを使う必要があるわけではありません。
->あくまでこの記事は参考のために書かれています。
+>この記事はあくまで参考のために書かれています。
 
 ## Reactのインポート
 
 まずはReact.jsを読み込まなくてははじまりません。
 TypeScriptでの読み込み方は以下のように書きます。
+
+### MyComponent.tsx
 
 ```typescrit:MyComponent.tsx
 import React = require('react');

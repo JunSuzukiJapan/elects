@@ -8,6 +8,10 @@
         "filename": "quickstart.md"
     },
     {
+        "title": "Simple Application",
+        "filename": "simple-application.md"
+    },
+    {
         "title": "Debug",
         "filename": "how-to-debug.md"
     },

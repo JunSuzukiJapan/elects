@@ -39,7 +39,7 @@ React-Jadeでは、.jadeで書かれたファイルから、TypeScript(JavaScrip
 div(onClick=someFunction)
 ```
 
-のように書いておいて、.ts(.js)ファイルから以下のように書いておけば、
+のように書いておいて、.ts(.js)ファイルに以下のように書いておけば、
 
 ```typescript:
 class MyComponent extends React.Component {
@@ -51,7 +51,9 @@ class MyComponent extends React.Component {
 
   render(){
     const template = require(template_filename);
-    return template({this.onClick.bind(this);});
+    return template({
+        onClick: this.onClick.bind(this)
+    });
   }
 }
 ```
