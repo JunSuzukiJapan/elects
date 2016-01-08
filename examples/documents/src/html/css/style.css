@@ -11,6 +11,10 @@ div#container {
     height: 100%;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .sidebar-nav {
     height: 100%;
     top: 0px;

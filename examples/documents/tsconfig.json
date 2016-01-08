@@ -1,5 +1,7 @@
 {
-	"files": [
-		"./github-electron/github-electron.d.ts"
-	]
+       "files": [
+              "./typings/tsd.d.ts"
+       ],
+
+       "compileOnSave": false,
 }

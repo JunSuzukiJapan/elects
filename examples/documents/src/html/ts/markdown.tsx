@@ -1,9 +1,8 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-//import React = require('../../node_modules/react/dist/react.min.js');
-import React = require('../../node_modules/react/');
-import MarkdownIt = require('../../node_modules/markdown-it/');
-import fs = require('../../node_modules/fs-extra/');
+import React = require('react');
+import MarkdownIt = require('markdown-it');
+import fs = require('fs-extra');
 import path = require('path');
 
 export class Markdown extends React.Component {
@@ -43,4 +42,3 @@ export class Markdown extends React.Component {
     });
   }
 }
-

@@ -1,6 +1,5 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
-//import React = require('../../node_modules/react/dist/react.min.js');
 import React = require('react');
 import fs = require('fs-extra');
 import path = require('path');
