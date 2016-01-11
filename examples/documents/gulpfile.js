@@ -12,6 +12,8 @@ var runSequence = require('run-sequence');
 var electron = require('gulp-electron');
 var exec = require('child_process').exec;
 var jade = require('@mizchi/gulp-react-jade');
+var sass = require('gulp-sass');
+var less = require('gulp-less');
 
 var packageJson = require('./src/package.json');
 
@@ -24,6 +26,7 @@ var config = {
         test: [
           './test/**/*.ts'
         ],
+        copy_files: './src/html/**/*.{json,jpeg,jpg,png,gif,mov}',
         html: './src/html',
         dst_html: './build/html',
         dst: './build',
@@ -50,7 +53,7 @@ gulp.task('check-typings', function(callback){
         }
         process.stdout.write(stdout);
         process.stderr.write(stderr);
-  
+
         console.log('done.');
         callback();
       });
@@ -75,7 +78,7 @@ gulp.task("compile-app", ['check-typings'], function(){
     .pipe(gulp.dest(config.ts.dst));
 });
 
-gulp.task('compile-html-ts', function(){
+gulp.task('compile-html-ts', ['check-typings'], function(){
   return gulp.src(config.ts.html + '/**/*.{ts,tsx,jsx}')
     .pipe(typescript(htmlTypescriptProject))
     .pipe(rename(function(path){
@@ -97,20 +100,32 @@ gulp.task('compile-jade', function(){
     .pipe(gulp.dest(config.ts.dst_html));
 });
 
-gulp.task('compile', ['compile-app', 'compile-html-ts']);
+gulp.task('scss', function() {
+  return gulp.src(config.ts.html + '/**/*.scss')
+    .pipe(sass())
+    .on('error', function(err) {
+      console.log(err.message);
+    })
+    .pipe(gulp.dest(config.ts.dst_html))
+});
+
+gulp.task('less', function(){
+    return gulp.src(config.ts.html + '/**/*.less')
+        .pipe(less())
+        .pipe(gulp.dest(config.ts.dst_html))
+});
+
+gulp.task('compile', ['compile-app', 'compile-html-ts', 'scss', 'less']);
 
 gulp.task("test:compile-source", ['check-typings'], function(){
-  return gulp.src(config.ts.src)
+  return gulp.src('./src/**/*.ts')
     .pipe(typescript(config.ts.options))
-    .js
-    .pipe(babel())
     .pipe(gulp.dest("./test/temp/src"));
 });
 
 gulp.task("test:compile-test", ['check-typings'], function(){
   return gulp.src(config.ts.test)
   .pipe(typescript(config.ts.options))
-  .pipe(babel())
   .pipe(gulp.dest("./test/temp/test"));
 });
 
@@ -128,6 +143,10 @@ gulp.task('mocha', function() {
     .on('error', gutil.log);
 });
 
+gulp.task('test:clean', function(callback){
+  fs.removeSync('./test/temp/');
+  callback();
+});
 
 gulp.task('watch-mocha', function() {
     gulp.watch(['src/**/*.ts', 'test/**/*.ts'], ['test']);
@@ -138,6 +157,7 @@ gulp.task('test', function(callback) {
     "test:compile-source",
     "test:compile-test",
     "mocha",
+    "test:clean",
     callback
   );
 });
@@ -150,6 +170,11 @@ gulp.task('copy-html', function(){
   .pipe(gulp.dest(config.ts.dst_html));
 });
 
+gulp.task('copy-other-files', function(){
+    return gulp.src(config.ts.copy_files)
+        .pipe(gulp.dest(config.ts.dst_html));
+});
+
 gulp.task('copy-package.json', function(){
   if( ! fs.existsSync(config.ts.dst) ){
     fs.emptyDirSync(config.ts.dst);
@@ -159,14 +184,14 @@ gulp.task('copy-package.json', function(){
 });
 
 gulp.task('npm-install', ['copy-package.json'], function(callback){
-  var current_directory = process.cwd();
-  process.chdir(config.ts.dst);
-  exec('npm install', function(err, stdout, stderr){
-    process.stdout.write(stdout);
-    process.stderr.write(stderr);
-    callback(err);
-  });
-  process.chdir(current_directory);
+    var current_directory = process.cwd();
+    process.chdir(config.ts.dst);
+    exec('npm install', function(err, stdout, stderr){
+      process.stdout.write(stdout);
+      process.stderr.write(stderr);
+      callback(err);
+    });
+    process.chdir(current_directory);
 });
 
 gulp.task('copy-markdown', function(){
@@ -191,6 +216,7 @@ gulp.task('run', function(callback){
       'compile-jade',
       'copy-html',
       'copy-markdown',
+      'copy-other-files',
       'run-app',
       callback
   );

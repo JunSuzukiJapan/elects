@@ -1,6 +1,6 @@
 {
   "name": "elects",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "description": "Electron with TypeScript framework",
   "bin": "bin/app.js",

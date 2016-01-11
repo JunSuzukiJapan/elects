@@ -2,14 +2,33 @@
 - var Grid = ReactBootstrap.Grid;
 - var Row = ReactBootstrap.Row
 - var Col = ReactBootstrap.Col;
+- var ButtonToolbar = ReactBootstrap.ButtonToolbar
+- var Button = ReactBootstrap.Button
 - var path = require('path');
+- var fs = require('fs-extra')
 - var Markdown = require('./js/markdown').Markdown;
 
 Grid(style="height:100%; width:100%")
     Row(style="height:100%")
         if maximize
             Col(md=9 id="big-markdown" className="maxframe" style="top: 0; left: 0; position:absolute; height: 100%;")
-                Markdown(path_name=filename css="maxframe" onChange=onMinimize)
+                div
+                    Button(onClick=doTranslate) Translate
+                    label to
+
+                    - var jsonFilename = path.resolve(__dirname + '/languages.json')
+                    - var langs = fs.readJsonSync(jsonFilename)
+                    select(onChange=onChangeLanguage)
+                        for obj, index in langs
+                            for val, key in obj
+                                if key == 'ja'
+                                    option(value=key selected=true)
+                                        = val
+                                else
+                                    option(value=key)
+                                        = val
+
+                    Markdown(path_name=filename css="maxframe" onChange=onMinimize lang=lang)
 
         else
             Col(md=9 className="miniframe-row" z-index=2 style="top: 0; left: 0; position:absolute; height: 100%;")
@@ -28,5 +47,3 @@ Grid(style="height:100%; width:100%")
                         li(key=index)
                             a(name=filename onClick=onClickIndex)
                               = obj.title
-
-

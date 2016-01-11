@@ -11,9 +11,12 @@ export class MainBody extends React.Component {
     private markdown_list_filename: string = path.resolve(__dirname + '/../md/markdown_list.txt');
     private markdown_list = fs.readJsonSync(this.markdown_list_filename);
 
+    private lang:string = 'ja';
+
     state = {
         maximize: false,
-        selectedFilename: ''
+        selectedFilename: '',
+        lang: 'ja'
     }
 
     constructor(props){
@@ -39,7 +42,18 @@ export class MainBody extends React.Component {
         this.setState({maximize: false});
     }
 
+    onChangeLanguage(e){
+        console.log('change lang ', e.target.value)
+        this.lang = e.target.value;
+    }
+
+    doTranslate(e){
+        console.log('do translate');
+        this.setState({lang: this.lang})
+    }
+
     render(){
+        console.log('mai-body render');
         return this.template({
             list: this.markdown_list,
             maximize: this.state.maximize,
@@ -47,7 +61,10 @@ export class MainBody extends React.Component {
             onMaximize: this.maximizeContent.bind(this),
             onMinimize: this.minimizeContent.bind(this),
             onClickIndex: this.onClickIndex.bind(this),
-            onClickGotoTop: this.onClickGotoTop.bind(this)
+            onClickGotoTop: this.onClickGotoTop.bind(this),
+            onChangeLanguage: this.onChangeLanguage.bind(this),
+            doTranslate: this.doTranslate.bind(this),
+            lang: this.state.lang
         });
     }
 }

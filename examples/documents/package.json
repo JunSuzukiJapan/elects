@@ -17,17 +17,18 @@
     "gulp-concat": "^2.6.0",
     "gulp-electron": "0.0.10",
     "gulp-exec": "^2.1.2",
-    "gulp-less": "^3.0.5",
     "gulp-mocha": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-sass": "^2.1.1",
     "gulp-typescript": "^2.10.0",
     "gulp-util": "^3.0.7",
+    "gulp-less": "^3.0.5",
+    "gulp-sass": "^2.1.1",
     "mocha": "^2.3.4",
-    "react": "^0.14.5",
-    "react-jade": "^2.5.0",
     "run-sequence": "^1.1.5",
     "tsd": "^0.6.5"
+  },
+  "dependencies": {
+    "cheerio": "^0.19.0"
   }
 }
