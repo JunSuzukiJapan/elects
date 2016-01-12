@@ -7,7 +7,7 @@ import path = require('path');
 import cheerio = require('cheerio');
 
 import TranslatorModule = require('./translator');
-console.log('module ', TranslatorModule);
+//console.log('module ', TranslatorModule);
 const Translator = TranslatorModule.default;
 
 export class Markdown extends React.Component {
@@ -66,9 +66,9 @@ export class Markdown extends React.Component {
         //console.log('cheerio: ', $);
 
         if(!self.translator){
-            const filename = path.resolve(process.cwd() + '/translate.secret'));
-            //console.log('translator: ', Translator);
-            self.translator = new Translator(filename);
+            //const filename = path.resolve(process.cwd() + '/translate.secret'));
+            //self.translator = new Translator(filename);
+            self.translator = new Translator();
         }
         self.translator.translate(html, 'ja', to, (result) => {
             //console.log('result ', result);
@@ -80,6 +80,7 @@ export class Markdown extends React.Component {
             result = result.replace(/<\s*([A-Za-z]+)\s*>/g, "<$1>");
             result = result.replace(/<\s+([A-Za-z]+\s+)/g, "<$1");
             result = result.replace(/<pre>\s*.*\s*<code>/g, '<pre><code>');
+            result = result.replace(/\\"/g, '"');
 
 
             console.log('after: ', result);

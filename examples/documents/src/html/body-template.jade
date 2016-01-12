@@ -18,15 +18,11 @@ Grid(style="height:100%; width:100%")
 
                     - var jsonFilename = path.resolve(__dirname + '/languages.json')
                     - var langs = fs.readJsonSync(jsonFilename)
-                    select(onChange=onChangeLanguage)
+                    select(onChange=onChangeLanguage value=lang)
                         for obj, index in langs
                             for val, key in obj
-                                if key == 'ja'
-                                    option(value=key selected=true)
-                                        = val
-                                else
-                                    option(value=key)
-                                        = val
+                                option(value=key)
+                                    = val
 
                     Markdown(path_name=filename css="maxframe" onChange=onMinimize lang=lang)
 

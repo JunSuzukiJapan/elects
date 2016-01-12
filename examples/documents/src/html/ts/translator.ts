@@ -6,15 +6,15 @@ import qs = require('querystring');
 import fs = require('fs-extra');
 
 export default class Translator {
-    private client_id: string;
-    private client_secret: string;
+//    private client_id: string;
+//    private client_secret: string;
 
-    constructor(filename: string = '../../../translate.secret'){
-        const json = fs.readJsonSync(filename);
-        this.client_id = json['client-id'];
-        this.client_secret = json['client-secret'];
-    }
-
+//    constructor(filename: string = '../../../translate.secret'){
+//        const json = fs.readJsonSync(filename);
+//        this.client_id = json['client-id'];
+//        this.client_secret = json['client-secret'];
+//    }
+/*
     private getAccessToken(callback) {
         var body = '';
         const req: http.ClientRequest = https.request({
@@ -40,6 +40,31 @@ export default class Translator {
         };
 
         req.write(qs.stringify(data));
+        req.end();
+    }
+*/
+
+    private getAccessToken(callback){
+        const options = {
+            host: 'thawing-sea-2967.herokuapp.com',
+            path: '/token',
+            method: 'GET'
+        };
+        const req: http.ClientRequest = http.request(options, (res) => {
+            var body = '';
+            res.setEncoding('utf8');
+
+            res.on('data', (chunk) => {
+                body += chunk;
+            });
+
+            res.on('end', () => {
+                callback(body);
+            });
+        });
+        req.on('error', (e) => {
+            console.log(e.message);
+        });
         req.end();
     }
 
